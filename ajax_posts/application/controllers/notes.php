@@ -5,7 +5,7 @@ class Notes extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->output->enable_profiler();
+		// $this->output->enable_profiler();
 	}
 
 	public function index()
@@ -26,8 +26,8 @@ class Notes extends CI_Controller {
 	{
 		$this->load->model('Note');
 		$results = $this->Note->display_posts();
-		$data['posts'] = $results;
-		echo json_encode($data);
+		// var_dump($results);die();
+		echo json_encode($results);
 	}
 }
 

@@ -9,7 +9,7 @@
 		}
 		#header div {
 			border: 1px solid black;
-			height: 250px;
+			height: 50px;
 			width: 250px;
 			display: inline-block;
 			vertical-align: top;
@@ -27,18 +27,27 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-	
+			$('#mainForm').submit(function(){
+				$.post(
+					$(this).attr('action'),
+					$(this).serialize(),
+					function(output){
+						for(var i=0; i<=output.length; i++)
+						{
+						$('#header').append("<div class='posts'> Post id: " + output[i].id + "<br>Message: " + output[i].description + "<br>Date: " + output[i].description + "</div>" ); // this does not output anything
+						// $('#id').val() = "";
+						}
+					}, 'json'
+				);
+				return false;
+			});
 		});
 	</script>
 </head>
 <body>
 	<h1>My Posts</h1>
-	<div id='header'>
-		<div id='post_1'></div>
-		<div id='post_2'></div>
-		<div id='post_3'></div>
-	</div>
-	<form action='/notes/create' method='post'>
+	<div id='header'></div>
+	<form id='mainForm' action='/notes/create' method='post'>
 		<label>Add a Note:</label>
 		<textarea type='text' name='description' rows='10' cols='75'></textarea>
 		<input type='submit' value='Post It!'>
