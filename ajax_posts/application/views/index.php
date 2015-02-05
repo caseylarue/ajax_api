@@ -28,18 +28,34 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#mainForm').submit(function(){
-				$.post(
-					$(this).attr('action'),
-					$(this).serialize(),
-					function(output){
-						for(var i=0; i<=output.length; i++)
+				$.ajax({
+					type: "POST",
+					url: "/notes/create", 
+					data: $(this).serialize()
+				})
+				.done(function(output){
+					for(var i=0; i<=output.length; i++)
 						{
 						$('#header').append("<div class='posts'> Post id: " + output[i].id + "<br>Message: " + output[i].description + "<br>Date: " + output[i].description + "</div>" ); // this does not output anything
 						// $('#id').val() = "";
 						}
-					}, 'json'
-				);
+				}, 'json');
 				return false;
+
+				//////////////////////  Before AJAX
+				// $.post(
+				// 	$(this).attr('action'),  // can also use $('#mainForm')
+				// 	$(this).serialize(),
+				// 	function(output){
+				// 		for(var i=0; i<=output.length; i++)
+				// 		{
+				// 		$('#header').append("<div class='posts'> Post id: " + output[i].id + "<br>Message: " + output[i].description + "<br>Date: " + output[i].description + "</div>" ); // this does not output anything
+				// 		// $('#id').val() = "";
+				// 		}
+				// 	}, 'json'
+				// );
+				// return false;
+				///////////////////////////
 			});
 		});
 	</script>
