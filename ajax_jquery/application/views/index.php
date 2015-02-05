@@ -7,9 +7,12 @@
 		$(document).ready(function(){
 			$('#mainForm').submit(function(){
 				$.post(
-					$('')
-					)
-
+					$('#mainForm').attr('action'),
+					$('#mainForm').serialize(),
+					function(output){
+						$('#messages').append("name: "+output.name+" age: "+output.age+"<br/>");
+					}, "json"
+					);
 				return false;
 			});
 		});
