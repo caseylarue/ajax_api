@@ -1,13 +1,6 @@
 <html>
 <head>
 	<title>Ajax Posts</title>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-	
-		});
-	</script>
 	<style type="text/css">
 		#header {
 			height: 300px;
@@ -30,6 +23,13 @@
 			margin: 10px;
 		}
 	</style>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+	
+		});
+	</script>
 </head>
 <body>
 	<h1>My Posts</h1>
@@ -40,7 +40,7 @@
 	</div>
 	<form action='/notes/create' method='post'>
 		<label>Add a Note:</label>
-		<textarea type='text' name='my_post' rows='10' cols='75'></textarea>
+		<textarea type='text' name='description' rows='10' cols='75'></textarea>
 		<input type='submit' value='Post It!'>
 	</form>
 </body>
