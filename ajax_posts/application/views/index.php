@@ -34,6 +34,7 @@
 					data: $(this).serialize()
 				})
 				.done(function(output){
+					console.log(output);
 					for(var i=0; i<=output.length; i++)
 						{
 						$('#header').append("<div class='posts'> Post id: " + output[i].id + "<br>Message: " + output[i].description + "<br>Date: " + output[i].description + "</div>" ); // this does not output anything
