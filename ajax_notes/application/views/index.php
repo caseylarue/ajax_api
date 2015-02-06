@@ -31,7 +31,8 @@
 	        .done(function(output) {
 	          	for(var i=0; i<=output.length; i++)
 					{
-						$('#notes').append("<div class='new'> Title:" + output[i].title + "<br><br> Notes:" + output[i].description + "</div>");
+						// $('#notes').append("<div class='new'> Title:" + output[i].title + "<br><br> Notes:" + output[i].description + "</div>");
+						$('#notes').append("<form action='/notes/delete' method='post'><input type='hidden' name='id' value='"+output[i].id+"'><button type='submit'>Delete</button></form><form action='/notes/changes' class='new' method='post'><input type='hidden' name='id' value='"+output[i].id+"'><label>Title:"+output[i].id+"</label><textarea type='text' name='title' rows='1' cols='40'>" + output[i].title + "</textarea><label>Note:</label><textarea type='text' name='description' class='new'>" + output[i].description + "</textarea><button type='submit'>Submit Change!</button></form>");
 					}
 	        }, 'json');
 	        return false;
@@ -52,11 +53,13 @@
 				.done(function(output){
 					for(var i=0; i<=output.length; i++)
 					{
-						$('#notes').append("<div class='new'>" + output[i].title + "<br>" + output[i].description + "</div>");
+						$('#notes').before("<form action='/notes/delete' method='post'><input type='hidden' name='id' value='"+output[i].id+"'><button type='submit'>Delete</button></form><form action='/notes/changes' class='new' method='post'><input type='hidden' name='id' value='"+output[i].id+"'><label>Title:"+output[i].id+"</label><textarea type='text' name='title' rows='1' cols='40'>" + output[i].title + "</textarea><label>Note:</label><textarea type='text' name='description' class='new'>" + output[i].description + "</textarea><button type='submit'>Submit Change!</button></form>");
 					}
 				}, 'json');
 				return false;
 			});
+
+
 		});	
 	</script>
 </head>

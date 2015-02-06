@@ -23,9 +23,6 @@ class Notes extends CI_Controller {
 		$id = $this->db->insert_id();
 		$results = $this->Note->show_recent_post($id);
 		echo json_encode($results);
-
-		// $this->show_recent_post($id);
-		// redirect('/notes/show_recent_post');
 	}
 
 	public function pull_posts()
@@ -35,11 +32,22 @@ class Notes extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	// public function show_recent_post($id)
-	// {
-	// 	$this->load->model('Note');
-		
-	// }
+	public function changes()
+	{
+		$input = $this->input->post();
+		$input['updated_at'] = date('Y-m-d h:i:s');
+		$this->load->model('Note');
+		$this->Note->update_post($input);
+		$this->load->view('index');
+	}
+
+	public function delete()
+	{
+		$input = $this->input->post();
+		$this->load->model('Note');
+		$this->Note->delete_post($input);
+		$this->load->view('index');
+	}
 }
 
 //end of main controller
