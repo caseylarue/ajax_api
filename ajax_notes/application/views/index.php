@@ -16,6 +16,16 @@
 			margin: 10px;
 			padding: 5px;
 		}
+		.notes {
+			max-height: 1200px;
+			overflow-y: scroll;
+		}
+		.posts {
+			border: 1px solid black;
+			width: 200px;
+			display: inline-block;
+			vertical-align: top;
+		}
 	</style>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -32,7 +42,7 @@
 	          	for(var i=0; i<=output.length; i++)
 					{
 						// $('#notes').append("<div class='new'> Title:" + output[i].title + "<br><br> Notes:" + output[i].description + "</div>");
-						$('#notes').append("<form action='/notes/delete' method='post'><input type='hidden' name='id' value='"+output[i].id+"'><button type='submit'>Delete</button></form><form action='/notes/changes' class='new' method='post'><input type='hidden' name='id' value='"+output[i].id+"'><label>Title:"+output[i].id+"</label><textarea type='text' name='title' rows='1' cols='40'>" + output[i].title + "</textarea><label>Note:</label><textarea type='text' name='description' class='new'>" + output[i].description + "</textarea><button type='submit'>Submit Change!</button></form>");
+						$('#notes').append("<div class='posts'><form action='/notes/delete' method='post'><input type='hidden' name='id' value='"+output[i].id+"'><button type='submit'>Delete</button></form><form action='/notes/changes' class='new' method='post'><input type='hidden' name='id' value='"+output[i].id+"'><label>Title:"+output[i].id+"</label><textarea type='text' name='title' rows='1' cols='40'>" + output[i].title + "</textarea><label>Note:</label><textarea type='text' name='description' class='new'>" + output[i].description + "</textarea><button type='submit'>Submit Change!</button></form></div>");
 					}
 	        }, 'json');
 	        return false;
@@ -53,7 +63,7 @@
 				.done(function(output){
 					for(var i=0; i<=output.length; i++)
 					{
-						$('#notes').before("<form action='/notes/delete' method='post'><input type='hidden' name='id' value='"+output[i].id+"'><button type='submit'>Delete</button></form><form action='/notes/changes' class='new' method='post'><input type='hidden' name='id' value='"+output[i].id+"'><label>Title:"+output[i].id+"</label><textarea type='text' name='title' rows='1' cols='40'>" + output[i].title + "</textarea><label>Note:</label><textarea type='text' name='description' class='new'>" + output[i].description + "</textarea><button type='submit'>Submit Change!</button></form>");
+						$('#notes').before("<div class='posts'><form action='/notes/delete' method='post'><input type='hidden' name='id' value='"+output[i].id+"'><button type='submit'>Delete</button></form><form action='/notes/changes' class='new' method='post'><input type='hidden' name='id' value='"+output[i].id+"'><label>Title:"+output[i].id+"</label><textarea type='text' name='title' rows='1' cols='40'>" + output[i].title + "</textarea><label>Note:</label><textarea type='text' name='description' class='new'>" + output[i].description + "</textarea><button type='submit'>Submit Change!</button></form></div>");
 					}
 				}, 'json');
 				return false;
